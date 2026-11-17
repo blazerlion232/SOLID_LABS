@@ -1,19 +1,11 @@
 //DiscountService.java
-
 public class DiscountService{
 
-
-    public void displayText(double Disc, String cType, double amountSaved){
-        System.out.println(cType + " customer gets discount of " + Disc+ " coming to a total of " + amountSaved+ " saved.");
+    public double checkout(double amount, customerType customerType){
+      DiscountPolicy policy = DiscountPolicyFactory.getPolicy(customerType);
+      double finalPrice = policy.calculate(amount);
+      return finalPrice;
     }
 
+}
 
-
-  public static void main(String[] args) {
-    DiscountService discountService = new DiscountService();
-    discountService.calculateDiscount("Regular", 1200);
-    discountService.calculateDiscount("Premium", 800);
-    discountService.calculateDiscount("Guest", 500);
-  }
-
-}   
